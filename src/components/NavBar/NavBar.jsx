@@ -4,11 +4,12 @@ import { NavLink } from 'react-router-dom'
 const NavBar = ({ user, handleLogout }) => {
   return (
     <nav>
+      <h1><NavLink to="/">Bright Path</NavLink></h1>
       {user ?
         <ul>
-          <li>Welcome, {user.name}</li>
-          <li><NavLink to="/profiles">Profiles</NavLink></li>
-          <li><NavLink to="" onClick={handleLogout}>LOG OUT</NavLink></li>
+          <li>Tasks</li>
+          <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+          <li><NavLink to="" onClick={handleLogout}>Log Out</NavLink></li>
           <li><NavLink to="/auth/change-password">Change Password</NavLink></li>
         </ul>
       :

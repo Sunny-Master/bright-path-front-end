@@ -9,4 +9,4 @@ const Landing = ({ user }) => {
   )
 }
 
-export default Landing
+export default Landing;

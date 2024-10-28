@@ -6,7 +6,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom'
 import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
-import Profiles from './pages/Profiles/Profiles'
+import Dashboard from './pages/Dashboard/Dashboard'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 
 // components
@@ -38,11 +38,19 @@ function App() {
       <NavBar user={user} handleLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Landing user={user} />} />
-        <Route
+        {/* <Route
           path="/profiles"
           element={
             <ProtectedRoute user={user}>
               <Profiles />
+            </ProtectedRoute>
+          }
+        /> */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute user={user}>
+              <Dashboard />
             </ProtectedRoute>
           }
         />
