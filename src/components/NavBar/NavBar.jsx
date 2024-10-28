@@ -7,7 +7,6 @@ const NavBar = ({ user, handleLogout }) => {
       <h1><NavLink to="/">Bright Path</NavLink></h1>
       {user ?
         <ul>
-          <li>Tasks</li>
           <li><NavLink to="/dashboard">Dashboard</NavLink></li>
           <li><NavLink to="" onClick={handleLogout}>Log Out</NavLink></li>
           <li><NavLink to="/auth/change-password">Change Password</NavLink></li>
