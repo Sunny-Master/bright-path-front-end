@@ -1,6 +1,7 @@
 // services
 import * as tokenService from './tokenService'
 
+const profileId = tokenService.getUserFromToken().profile
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/api/profiles`
 
 async function getAllProfiles() {
@@ -18,7 +19,6 @@ async function addPhoto(photoData) {
   try {
     const photoFormData = new FormData()
     photoFormData.append('photo', photoData)
-    const profileId = tokenService.getUserFromToken().profile
     const res = await fetch(`${BASE_URL}/${profileId}/add-photo`, {
       method: 'PUT',
       headers: {
@@ -32,7 +32,7 @@ async function addPhoto(photoData) {
   }
 }
 
-async function show(profileId) {
+async function show() {
   try {
     const res = await fetch(`${BASE_URL}/${profileId}`, {
       headers: { 
@@ -45,4 +45,4 @@ async function show(profileId) {
   }
 }
 
-export { getAllProfiles, addPhoto }
+export { getAllProfiles, addPhoto, show }

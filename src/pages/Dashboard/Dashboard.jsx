@@ -1,10 +1,24 @@
 //npm modules
+import { useState, useEffect } from "react"
+import { NavLink } from "react-router-dom"
 
-const Dashboard = (props) => {
+
+// components
+import JobCard from "../../components/JobCard/JobCard"
+
+//css
+import styles from './Dashboard.module.css'
+
+const Dashboard = ({jobs}) => {
+
+  if (!jobs) return <h1>Loading...</h1>
+
   return ( 
-    <>
-      <h1>My Profile</h1>
-    </>
+    <main className={styles.container}>
+      {jobs.map(job => 
+        <JobCard key={job._id} job={job} />
+      )}
+    </main>
   )
 }
 

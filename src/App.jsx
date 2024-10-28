@@ -1,5 +1,5 @@
 // npm modules
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
 // pages
@@ -15,13 +15,23 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 // services
 import * as authService from './services/authService'
+import * as jobService from './services/jobService'
 
 // styles
 import './App.css'
 
 function App() {
   const [user, setUser] = useState(authService.getUser())
+  const [jobs, setJobs] = useState([])
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const fetchJobs = async () => {
+      const jobsData = await jobService.index()
+      setJobs(jobsData)
+    }
+    if (user) fetchJobs()
+  }, [user])
 
   const handleLogout = () => {
     authService.logout()
@@ -50,7 +60,7 @@ function App() {
           path="/dashboard"
           element={
             <ProtectedRoute user={user}>
-              <Dashboard />
+              <Dashboard jobs={jobs}/>
             </ProtectedRoute>
           }
         />
