@@ -8,6 +8,7 @@ import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
 import Dashboard from './pages/Dashboard/Dashboard'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
+import NewJob from './pages/NewJob/NewJob'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -43,24 +44,30 @@ function App() {
     setUser(authService.getUser())
   }
 
+  const handleAddJob = async (jobFormData) => {
+    const newJob = await jobService.create(jobFormData)
+    setJobs([newJob, ...jobs])
+    navigate('/dashboard')
+  }
+
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Landing user={user} />} />
-        {/* <Route
-          path="/profiles"
-          element={
-            <ProtectedRoute user={user}>
-              <Profiles />
-            </ProtectedRoute>
-          }
-        /> */}
         <Route
           path="/dashboard"
           element={
             <ProtectedRoute user={user}>
               <Dashboard jobs={jobs}/>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/jobs/new"
+          element={
+            <ProtectedRoute user={user}>
+              <NewJob handleAddJob={handleAddJob}/>
             </ProtectedRoute>
           }
         />

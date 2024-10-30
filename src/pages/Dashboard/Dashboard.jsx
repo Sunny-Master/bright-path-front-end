@@ -14,10 +14,15 @@ const Dashboard = ({jobs}) => {
   if (!jobs) return <h1>Loading...</h1>
 
   return ( 
-    <main className={styles.container}>
-      {jobs.map(job => 
-        <JobCard key={job._id} job={job} />
-      )}
+    <main >
+      <section>
+        
+      </section>
+      <section className={styles.container}>
+        {jobs.map(job => 
+          <JobCard key={job._id} job={job} />
+        )}
+      </section>
     </main>
   )
 }
