@@ -30,7 +30,21 @@ async function create(jobFormData) {
   }
 }
 
+async function show(jobId) {
+  try {
+    const res = await fetch(`${BASE_URL}/${jobId}`, {
+      headers: { 
+        'Authorization': `Bearer ${tokenService.getToken()}` 
+      },
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export {
   index,
-  create
+  create,
+  show
 }

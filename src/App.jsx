@@ -9,6 +9,7 @@ import Landing from './pages/Landing/Landing'
 import Dashboard from './pages/Dashboard/Dashboard'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import NewJob from './pages/NewJob/NewJob'
+import JobDetails from './pages/JobDetails/JobDetails'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -68,6 +69,14 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <NewJob handleAddJob={handleAddJob}/>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/jobs/:jobId"
+          element={
+            <ProtectedRoute user={user}>
+              <JobDetails />
             </ProtectedRoute>
           }
         />
