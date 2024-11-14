@@ -36,7 +36,9 @@ const JobDetails = (props) => {
           <label>Docs: &nbsp;<span><a href={job.docLink}>Click here to open</a></span></label>
           <label>Notes: &nbsp;<span>{job.notes}</span></label>
         </div>
-
+        <NavLink to='/job/edit' state={job}>
+          📝
+        </NavLink>
       </section>
       <section>
         <h2>Tasks</h2>

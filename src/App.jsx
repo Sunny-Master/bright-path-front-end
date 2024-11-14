@@ -10,6 +10,7 @@ import Dashboard from './pages/Dashboard/Dashboard'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import NewJob from './pages/NewJob/NewJob'
 import JobDetails from './pages/JobDetails/JobDetails'
+import EditJob from './pages/EditJob/EditJob'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -51,6 +52,15 @@ function App() {
     navigate('/dashboard')
   }
 
+  const handleUpdateJob = async (jobFormData) => {
+    const updatedJob = await jobService.update(jobFormData)
+    setJobs(jobs.map(job => job._id === updatedJob._id ? 
+      updatedJob : job
+    ))
+    navigate(`/jobs/${updatedJob._id}`)
+  }
+
+
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
@@ -77,6 +87,14 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <JobDetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/job/edit"
+          element={
+            <ProtectedRoute user={user}>
+              <EditJob handleUpdateJob={handleUpdateJob}/>
             </ProtectedRoute>
           }
         />

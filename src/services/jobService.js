@@ -43,8 +43,25 @@ async function show(jobId) {
   }
 }
 
+async function update(jobFormData) {
+  try {
+    const res = await fetch(`${BASE_URL}/${jobFormData._id}`, {
+      method: 'PUT',
+      headers: { 
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json' 
+      },
+      body: JSON.stringify(jobFormData)
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export {
   index,
   create,
-  show
+  show,
+  update
 }
