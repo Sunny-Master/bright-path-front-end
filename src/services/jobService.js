@@ -59,9 +59,24 @@ async function update(jobFormData) {
   }
 }
 
+async function deleteJob(jobId) {
+  try {
+    const res = await fetch(`${BASE_URL}/${jobId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`
+      }
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export {
   index,
   create,
   show,
-  update
+  update,
+  deleteJob as delete
 }

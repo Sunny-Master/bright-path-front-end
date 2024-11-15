@@ -7,6 +7,7 @@ import * as jobService from '../../services/jobService'
 
 // css
 import styles from './JobDetails.module.css'
+// import { Button } from '@mui/material'
 
 const JobDetails = (props) => {
   const [job, setJob] = useState(null)
@@ -39,6 +40,9 @@ const JobDetails = (props) => {
         <NavLink to='/job/edit' state={job}>
           📝
         </NavLink>
+        <button onClick={() => props.handleDeleteJob(job._id)}>
+          🗑️
+        </button>
       </section>
       <section>
         <h2>Tasks</h2>
