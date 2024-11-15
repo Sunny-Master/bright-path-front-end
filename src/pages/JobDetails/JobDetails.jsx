@@ -8,6 +8,8 @@ import * as jobService from '../../services/jobService'
 // css
 import styles from './JobDetails.module.css'
 // import { Button } from '@mui/material'
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditNoteIcon from '@mui/icons-material/EditNote';
 
 const JobDetails = (props) => {
   const [job, setJob] = useState(null)
@@ -37,12 +39,14 @@ const JobDetails = (props) => {
           <label>Docs: &nbsp;<span><a href={job.docLink}>Click here to open</a></span></label>
           <label>Notes: &nbsp;<span>{job.notes}</span></label>
         </div>
-        <NavLink to='/job/edit' state={job}>
-          📝
-        </NavLink>
-        <button onClick={() => props.handleDeleteJob(job._id)}>
-          🗑️
-        </button>
+        <div className={styles.actions}>
+          <NavLink to='/job/edit' state={job}>
+            <EditNoteIcon fontSize="inherit" style={{ color: "limegreen" }}/>
+          </NavLink>
+          <button onClick={() => props.handleDeleteJob(job._id)}>
+            <DeleteIcon fontSize="inherit"/>
+          </button>
+        </div>
       </section>
       <section>
         <h2>Tasks</h2>

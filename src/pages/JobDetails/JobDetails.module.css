@@ -16,6 +16,18 @@
   padding-bottom: 1rem;
 }
 
+.container button {
+  color: red;
+  background: none;
+  border: none;
+  font-size: 2rem;
+}
+
+.actions{
+  display: flex;
+  font-size: 2.5rem;
+}
+
 .header {
   display: flex;
   flex-direction: column;
