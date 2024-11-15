@@ -60,6 +60,13 @@ function App() {
     navigate(`/jobs/${updatedJob._id}`)
   }
 
+  const handleDeleteJob = async (jobId) => {
+    const deletedJob = await jobService.delete(jobId)
+    setJobs(jobs.filter(job => job._id !==deletedJob._id))
+    navigate('/dashboard')
+  }
+
+
 
   return (
     <>
@@ -86,7 +93,10 @@ function App() {
           path="/jobs/:jobId"
           element={
             <ProtectedRoute user={user}>
-              <JobDetails />
+              <JobDetails
+                user={user}
+                handleDeleteJob={handleDeleteJob}
+              />
             </ProtectedRoute>
           }
         />
