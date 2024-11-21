@@ -73,10 +73,27 @@ async function deleteJob(jobId) {
   }
 }
 
+async function createTask(jobId, taskFormData) {
+  try {
+    const res = await fetch(`${BASE_URL}/${jobId}/tasks`, {
+      method: "POST",
+      headers: { 
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json' 
+      },
+      body: JSON.stringify(taskFormData)
+    })
+    return await res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export {
   index,
   create,
   show,
   update,
-  deleteJob as delete
+  deleteJob as delete,
+  createTask,
 }

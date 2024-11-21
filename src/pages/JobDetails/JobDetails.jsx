@@ -5,8 +5,12 @@ import { useParams, NavLink } from 'react-router-dom'
 // services
 import * as jobService from '../../services/jobService'
 
+// components
+import NewTask from '../../components/NewTask/NewTask'
+
 // css
 import styles from './JobDetails.module.css'
+
 // import { Button } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditNoteIcon from '@mui/icons-material/EditNote';
@@ -22,6 +26,13 @@ const JobDetails = (props) => {
     }
     fetchJob()
   }, [jobId])
+
+  const handleAddTask = async (taskFormData) => {
+    // make an API call using service function
+    const newTask = await jobService.createTask(jobId, taskFormData)
+    // set state with the result
+    setJob({ ...job, tasks: [...job.tasks, newTask]})
+  }
 
   if (!job) return <h1>Loading...</h1>
   const date = new Date(job.appliedDate).toLocaleDateString()
@@ -50,7 +61,7 @@ const JobDetails = (props) => {
       </section>
       <section>
         <h2>Tasks</h2>
-        
+        <NewTask handleAddTask={handleAddTask}/>
       </section>
     </main>
   )
