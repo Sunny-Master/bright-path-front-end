@@ -40,12 +40,12 @@ const NewTask = (props) => {
 
   return (  
     <>
-      <h1>New Task</h1>
+      <h4>Add Job Task</h4>
       <Box
         display="flex" 
         justifyContent="center" 
         alignItems="center"
-        sx={{ width: "50%" }}
+        sx={{ width: "90%" }}
       >
         <Paper elevation={4} sx={{ width: "100%", p: "1rem" }}>
           <form onSubmit={handleSubmit} className={styles.form}>

@@ -12,11 +12,12 @@
   flex-direction: column;
   align-items: center;
   width: 80%;
+  max-width: 500px;
   border-radius: 10px;
   padding-bottom: 1rem;
 }
 
-.container button {
+.actions button {
   color: red;
   background: none;
   border: none;
@@ -54,4 +55,18 @@
 
 .container span {
   font-style: normal;
+}
+
+.taskBoard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 90%;
+  gap: 1rem;
+}
+
+.top {
+  display: flex;
+  gap: 1rem;
+  margin: 0.5rem;
 }
